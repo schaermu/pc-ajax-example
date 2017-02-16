@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JSON example</title>
+</head>
+
+<body>
+    <h1>Doing some crazy stuff with $.ajax</h1>
+    <a href="http://api.jquery.com/" target="_blank">jQuery Documentation</a>
+    <div id="result">
+
+    </div>
+    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        // the following line is really important: it tells the browser to "wait" for jQuery
+        $(document).ready(function () {
+            // GET data using $.ajax to load data from an URL
+            $.ajax('https://jsonplaceholder.typicode.com/users', {
+                method: 'GET',
+                success: function (res) {
+                    for (var i = 0; i < res.length; i++) {
+                        console.log(res[i]);
+                    }
+                }
+            });
+
+            // POST data using $.ajax to send data to a URL
+            $.ajax('https://jsonplaceholder.typicode.com/users', {
+                method: 'POST',
+                data: {
+                    name: 'schaermu',
+                    city: 'Bern',
+                    zipCode: 3014
+                },
+                dataType: 'application/json',
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+
+            // using GET-shorthand $.get to load data from an URL
+            $.get('https://jsonplaceholder.typicode.com/users', function (res) {
+                for (var i = 0; i < res.length; i++) {
+                    console.log(res[i]);
+                }
+            });
+
+            // using POST-shorthand $.post to send data to a URL
+            $.post('https://jsonplaceholder.typicode.com/users', {
+                name: 'schaermu',
+                city: 'Bern',
+                zipCode: 3014
+            }, function(res) {
+                console.log(res);
+            })
+        });
+
+    </script>
+</body>
+
+</html>
